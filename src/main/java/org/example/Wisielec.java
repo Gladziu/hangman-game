@@ -18,32 +18,32 @@ public class Wisielec {
         String word = readWords.wordToGuess();
 
         int wordLength = word.length();
-        char[] guessedLeters, guessedLetersHelper;
-        guessedLeters = new char[wordLength];
-        Arrays.fill(guessedLeters, '_');
-        guessedLetersHelper = new char[wordLength];
+        char[] guessedLetters, guessedLettersHelper;
+        guessedLetters = new char[wordLength];
+        Arrays.fill(guessedLetters, '_');
+        guessedLettersHelper = new char[wordLength];
 
-        List<String> usedLeters = new ArrayList<>();
+        List<String> usedLetters = new ArrayList<>();
 
         while(hasLives){
 
             System.out.print("Word to guess: ");
-            System.out.println(guessedLeters);
+            System.out.println(guessedLetters);
 
             System.out.print("> ");
 
             // Wczytanie litery od uzytkownika
-            char leter = scanner.next().charAt(0);
+            char letter = scanner.next().charAt(0);
 
             // Sprawdzenie czy literka jest w slowie
             for (int i = 0; i < wordLength; i++){
-                if (word.charAt(i) == leter){
-                    guessedLeters[i]=leter;
+                if (word.charAt(i) == letter){
+                    guessedLetters[i]=letter;
                 }
             }
 
             // Metoda zwraca aktualna ilosc zyc
-            lives = checkCorrectLetter(lives, guessedLeters, guessedLetersHelper);
+            lives = checkCorrectLetter(lives, guessedLetters, guessedLettersHelper);
 
             // Koniec gry jezeli skoncza sie zycia
             if (lives <= 0){
@@ -57,36 +57,36 @@ public class Wisielec {
             System.out.println(wisielecDrawing);
 
             // Uzupelnienie listy uzytych literek
-            usedLeters.add(String.valueOf(leter));
-            int lastIndex = usedLeters.size() - 1;
-            for (char eachLeter : guessedLeters){
-                if (eachLeter == leter){
-                    usedLeters.remove(lastIndex);
+            usedLetters.add(String.valueOf(letter));
+            int lastIndex = usedLetters.size() - 1;
+            for (char eachLeter : guessedLetters){
+                if (eachLeter == letter){
+                    usedLetters.remove(lastIndex);
                     break;
                 }
             }
 
             // Print uzytych literek
-            if(!usedLeters.isEmpty()){
+            if(!usedLetters.isEmpty()){
                 System.out.print("Used leters: ");
-                for(String usedLeter : usedLeters) {
+                for(String usedLeter : usedLetters) {
                     System.out.print(usedLeter.toUpperCase() + " ");
                 }
                 System.out.println();
             }
 
-            hasLives = checkWin(guessedLeters);
+            hasLives = checkWin(guessedLetters);
 
-            guessedLetersHelper = guessedLeters.clone();
+            guessedLettersHelper = guessedLetters.clone();
         }
 
             System.out.println("\nYes, it is: " + word + " You won!");
 
     }
 
-    private int checkCorrectLetter(int lives, char[] guessedLeters, char[] guessedLetersHelper) {
-        for (int i = 0; i < guessedLeters.length; i++){
-            if (guessedLetersHelper[i] != guessedLeters[i]){
+    private int checkCorrectLetter(int lives, char[] guessedLetters, char[] guessedLettersHelper) {
+        for (int i = 0; i < guessedLetters.length; i++){
+            if (guessedLettersHelper[i] != guessedLetters[i]){
                 return lives;
             }
         }
@@ -95,9 +95,9 @@ public class Wisielec {
         return lives;
     }
 
-    private boolean checkWin(char[] guessedLeters){
-        for (char guessedLeter : guessedLeters) {
-            if ('_' == guessedLeter) {
+    private boolean checkWin(char[] guessedLetters){
+        for (char guessedLetter : guessedLetters) {
+            if ('_' == guessedLetter) {
                 return true;
             }
         }
