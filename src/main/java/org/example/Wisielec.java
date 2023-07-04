@@ -113,6 +113,7 @@ public class Wisielec {
             play();
 
             String check;
+
             do {
                 System.out.print("\nPlay again? y/n ");
                 check = scanner.next();
@@ -121,6 +122,7 @@ public class Wisielec {
             if (Objects.equals(check, "n")) {
                 keepPlaying = false;
             }
+
         }while (keepPlaying);
 
         System.out.println("Thanks for playing.");
