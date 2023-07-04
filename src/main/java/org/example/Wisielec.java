@@ -79,9 +79,7 @@ public class Wisielec {
 
             guessedLettersHelper = guessedLetters.clone();
         }
-
             System.out.println("\nYes, it is: " + word + " You won!");
-
     }
 
     private int checkCorrectLetter(int lives, char[] guessedLetters, char[] guessedLettersHelper) {
